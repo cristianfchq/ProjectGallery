@@ -1,0 +1,13 @@
+{
+  "store": {
+    "name": "FabriSport Catalog",
+    "tagline": "Tu estilo, tu elección",
+    "whatsapp": "59170000000"
+  },
+  "categories": [
+    "zapatillas",
+    "camisetas",
+    "accesorios",
+    "modelos"
+  ]
+}

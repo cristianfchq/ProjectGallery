@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bgC1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3f2fd"/>
+      <stop offset="100%" style="stop-color:#bbdefb"/>
+    </linearGradient>
+    <linearGradient id="shirt1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1976d2"/>
+      <stop offset="100%" style="stop-color:#1565c0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgC1)"/>
+  <!-- T-shirt shape -->
+  <!-- Left sleeve -->
+  <path d="M100 130 L70 170 L110 185 L130 155 Z" fill="url(#shirt1)"/>
+  <!-- Right sleeve -->
+  <path d="M300 130 L330 170 L290 185 L270 155 Z" fill="url(#shirt1)"/>
+  <!-- Body -->
+  <path d="M130 120 Q160 108 200 105 Q240 108 270 120 L280 155 Q260 148 250 150 L250 290 Q225 298 200 298 Q175 298 150 290 L150 150 Q140 148 120 155 Z" fill="url(#shirt1)"/>
+  <!-- Collar -->
+  <path d="M168 112 Q200 102 232 112 Q225 128 200 130 Q175 128 168 112 Z" fill="#1565c0"/>
+  <!-- Nike text / logo area -->
+  <text x="200" y="220" font-family="'Segoe UI',sans-serif" font-size="26" font-weight="900" text-anchor="middle" fill="rgba(255,255,255,0.4)">NIKE</text>
+  <!-- Dri-FIT detail lines -->
+  <line x1="160" y1="240" x2="240" y2="240" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <line x1="158" y1="250" x2="242" y2="250" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <!-- Label text -->
+  <text x="200" y="340" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#1976d2">Nike Dri-FIT Pro</text>
+  <text x="200" y="360" font-family="'Segoe UI',sans-serif" font-size="13" text-anchor="middle" fill="#9e9e9e">Bs 350</text>
+</svg>

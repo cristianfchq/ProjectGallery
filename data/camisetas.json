@@ -1,0 +1,29 @@
+[
+  {
+    "id": "cam-001",
+    "name": "Nike Dri-FIT Pro",
+    "price": "Bs 350",
+    "image": "assets/camisetas/nike_dryfit.png",
+    "category": "Camisetas",
+    "description": "Tecnología Dri-FIT que aleja el sudor de la piel para mantenerte seco y fresco durante el entrenamiento.",
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"]
+  },
+  {
+    "id": "cam-002",
+    "name": "Adidas Essential Tee",
+    "price": "Bs 300",
+    "image": "assets/camisetas/adidas_basic.png",
+    "category": "Camisetas",
+    "description": "Camiseta básica Adidas con logo trefoil bordado. Algodón 100% premium de tacto suave y duradero.",
+    "sizes": ["S", "M", "L", "XL", "XXL"]
+  },
+  {
+    "id": "cam-003",
+    "name": "Under Armour Tech 2.0",
+    "price": "Bs 420",
+    "image": "assets/camisetas/under_armour.png",
+    "category": "Camisetas",
+    "description": "Tejido HeatGear ultraligero para máxima transpirabilidad. Ideal para entrenamientos de alta intensidad.",
+    "sizes": ["XS", "S", "M", "L", "XL"]
+  }
+]

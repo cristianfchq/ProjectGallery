@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bgA1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e9"/>
+      <stop offset="100%" style="stop-color:#c8e6c9"/>
+    </linearGradient>
+    <linearGradient id="cap1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2e7d32"/>
+      <stop offset="100%" style="stop-color:#1b5e20"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgA1)"/>
+  <!-- Bill/Brim -->
+  <path d="M100 250 Q200 262 310 250 Q305 268 200 272 Q100 268 100 250 Z" fill="#1b5e20"/>
+  <!-- Cap dome -->
+  <path d="M110 248 Q112 185 160 160 Q200 148 240 160 Q288 185 290 248 Z" fill="url(#cap1)"/>
+  <!-- Panel seam lines -->
+  <path d="M200 150 Q200 150 200 248" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+  <path d="M160 160 Q175 200 180 248" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" fill="none"/>
+  <path d="M240 160 Q225 200 220 248" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" fill="none"/>
+  <!-- Sweatband area -->
+  <path d="M110 248 Q200 254 290 248 L290 242 Q200 248 110 242 Z" fill="#1b5e20"/>
+  <!-- Button on top -->
+  <circle cx="200" cy="152" r="8" fill="#1b5e20" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+  <!-- Nike swoosh embroidery -->
+  <path d="M178 205 Q200 196 225 202 Q218 212 195 215 Q180 213 178 205 Z" fill="rgba(255,255,255,0.9)"/>
+  <!-- Adjustable strap suggestion -->
+  <rect x="155" y="256" width="90" height="10" rx="3" fill="#1b5e20"/>
+  <rect x="193" y="254" width="14" height="14" rx="2" fill="#388e3c"/>
+  <text x="200" y="340" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#2e7d32">Gorra Nike Classic</text>
+  <text x="200" y="360" font-family="'Segoe UI',sans-serif" font-size="13" text-anchor="middle" fill="#9e9e9e">Bs 250</text>
+</svg>

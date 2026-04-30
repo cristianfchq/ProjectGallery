@@ -1,0 +1,11 @@
+[
+  {
+    "id": "mod-001",
+    "name": "Conjunto Sport Completo",
+    "price": "Bs 850",
+    "image": "assets/modelos/conjunto_sport.png",
+    "category": "Modelos",
+    "description": "Conjunto deportivo completo: camiseta + short + zapatillas. Look total para el gym.",
+    "sizes": ["S", "M", "L", "XL"]
+  }
+]

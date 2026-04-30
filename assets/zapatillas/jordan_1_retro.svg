@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff3e0"/>
+      <stop offset="100%" style="stop-color:#ffe0b2"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg2)"/>
+  <ellipse cx="200" cy="295" rx="120" ry="18" fill="rgba(0,0,0,0.12)"/>
+  <!-- Sole -->
+  <path d="M80 270 Q90 285 200 288 Q310 285 330 270 L325 258 Q310 272 200 275 Q90 272 85 258 Z" fill="#212121"/>
+  <!-- Main upper - red/black colorway -->
+  <path d="M85 258 Q95 215 145 198 Q185 188 235 194 Q282 200 325 218 L330 258 Q310 272 200 275 Q90 272 85 258 Z" fill="#c62828"/>
+  <!-- Black panels -->
+  <path d="M85 258 Q88 230 112 212 Q132 202 158 198 Q162 222 142 238 Q112 248 85 258 Z" fill="#212121"/>
+  <path d="M295 210 Q322 220 330 258 Q310 272 296 268 Z" fill="#212121"/>
+  <!-- White ankle collar -->
+  <path d="M200 175 Q240 172 270 182 Q280 195 275 210 Q250 205 200 205 Q165 205 145 198 Q150 185 175 178 Z" fill="#ffffff"/>
+  <!-- Laces -->
+  <path d="M158 198 Q195 192 248 196 L252 230 Q210 224 162 228 Z" fill="#f5f5f5"/>
+  <line x1="172" y1="204" x2="244" y2="202" stroke="#e0e0e0" stroke-width="2.5"/>
+  <line x1="170" y1="213" x2="246" y2="211" stroke="#e0e0e0" stroke-width="2.5"/>
+  <line x1="168" y1="222" x2="248" y2="220" stroke="#e0e0e0" stroke-width="2.5"/>
+  <!-- Wing logo area -->
+  <path d="M168 235 Q200 230 248 237 L245 248 Q200 244 170 248 Z" fill="#ffffff" opacity="0.9"/>
+  <!-- Text -->
+  <text x="200" y="335" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#c62828">Jordan 1 Retro High</text>
+  <text x="200" y="355" font-family="'Segoe UI',sans-serif" font-size="13" text-anchor="middle" fill="#9e9e9e">Bs 1500</text>
+</svg>

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "zap-001",
+    "name": "Jordan Air Force 1",
+    "price": "Bs 1200",
+    "image": "assets/zapatillas/jordan_air_force.png",
+    "category": "Zapatillas",
+    "description": "Clásico icónico de Nike con suela de aire y cuero premium. Comodidad insuperable para el día a día.",
+    "sizes": ["37", "38", "39", "40", "41", "42", "43", "44"]
+  },
+  {
+    "id": "zap-002",
+    "name": "Jordan 1 Retro High",
+    "price": "Bs 1500",
+    "image": "assets/zapatillas/jordan_1_retro.png",
+    "category": "Zapatillas",
+    "description": "Edición retro del legendario Jordan 1 con colorway Chicago. Cuero de alta calidad y suela de goma.",
+    "sizes": ["38", "39", "40", "41", "42", "43"]
+  },
+  {
+    "id": "zap-003",
+    "name": "Nike Air Max 90",
+    "price": "Bs 1350",
+    "image": "assets/zapatillas/nike_air_max.png",
+    "category": "Zapatillas",
+    "description": "Cámara de aire visible en el talón para máxima amortiguación. Diseño retro que nunca pasa de moda.",
+    "sizes": ["37", "38", "39", "40", "41", "42", "43", "44", "45"]
+  }
+]

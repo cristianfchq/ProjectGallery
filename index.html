@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo de productos SportStyle — zapatillas, camisetas y accesorios.">
+  <meta name="theme-color" content="#667eea">
+
+  <!-- Open Graph (redes sociales) -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="SportStyle Catalog">
+  <meta property="og:description" content="Los mejores productos deportivos al mejor precio.">
+
+  <title>SportStyle Catalog</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       LOADER — visible mientras se cargan los JSON
+       ============================================================ -->
+  <div id="loader" role="status" aria-label="Cargando catálogo">
+    <div class="loader-ring"></div>
+    <p class="loader-txt">Cargando catálogo…</p>
+  </div>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-inner">
+
+      <!-- Brand -->
+      <div class="brand" aria-label="Inicio">
+        <span class="brand-name" id="store-name">SportStyle</span>
+        <span class="brand-tagline" id="store-tagline">Tu estilo, tu elección</span>
+      </div>
+
+      <!-- Right controls -->
+      <div class="nav-right">
+        <!-- Buscador -->
+        <div class="search-wrap">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clip-rule="evenodd"/>
+          </svg>
+          <input type="search" id="search-input"
+                 class="search-input"
+                 placeholder="Buscar productos…"
+                 aria-label="Buscar productos"
+                 autocomplete="off">
+        </div>
+
+        <!-- Modo oscuro/claro -->
+        <button id="theme-toggle" class="theme-toggle"
+                aria-label="Activar modo oscuro">
+          <span class="theme-icon">🌙</span>
+          <span class="theme-text">Modo Oscuro</span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO BANNER
+       ============================================================ -->
+  <header class="hero" role="banner">
+    <div class="hero-inner">
+      <h1>Catálogo de Productos</h1>
+      <p>Descubre nuestra colección exclusiva</p>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       CATEGORÍAS — generado dinámicamente por JS
+       ============================================================ -->
+  <section class="cat-section" aria-label="Filtrar por categoría">
+    <div class="cat-shell">
+      <span class="cat-label">Categorías:</span>
+      <nav id="category-nav" role="tablist" aria-label="Categorías"></nav>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GRID DE PRODUCTOS
+       ============================================================ -->
+  <main class="products-section" id="main" role="main">
+    <div class="section-head">
+      <h2 class="section-title">Todos los Productos</h2>
+      <span class="product-count" id="product-count" aria-live="polite">0 productos</span>
+    </div>
+
+    <!-- Grid generado por JS -->
+    <div id="product-grid" role="list" aria-label="Productos"></div>
+
+    <!-- Estado vacío -->
+    <div id="empty-state" role="status" aria-live="polite">
+      <div class="empty-icon">🔍</div>
+      <p class="empty-txt">No se encontraron productos.</p>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       MODAL — detalle de producto
+       ============================================================ -->
+  <div id="product-modal"
+       role="dialog" aria-modal="true" aria-labelledby="modal-name">
+
+    <div class="modal-content">
+      <!-- Cerrar -->
+      <button class="modal-close" aria-label="Cerrar detalle">✕</button>
+
+      <div class="modal-body">
+
+        <!-- Imagen grande -->
+        <div class="modal-img-pane">
+          <img id="modal-image" src="" alt="" loading="lazy">
+        </div>
+
+        <!-- Información -->
+        <div class="modal-info">
+          <span class="modal-cat-badge" id="modal-cat">Categoría</span>
+          <h2 class="modal-name"  id="modal-name">Nombre del producto</h2>
+          <p  class="modal-price" id="modal-price">Precio</p>
+          <p  class="modal-desc"  id="modal-desc">Descripción del producto.</p>
+
+          <!-- Tallas disponibles — generado por JS -->
+          <div class="sizes-wrap" id="sizes-wrap">
+            <p class="sizes-label">
+              <span class="sizes-label-txt">Talla:</span>
+              <span class="sizes-hint" id="size-hint">Elige una talla</span>
+            </p>
+            <div class="sizes-grid" id="modal-sizes" role="group" aria-label="Tallas disponibles"></div>
+          </div>
+
+          <div class="modal-divider"></div>
+
+          <!-- Botón pedir por WhatsApp -->
+          <a id="modal-wa-btn"
+             href="#"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="wa-btn"
+             aria-label="Pedir por WhatsApp">
+
+            <!-- Ícono SVG oficial de WhatsApp -->
+            <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148
+                -.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15
+                -1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018
+                -.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099
+                -.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487
+                -.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297
+                -1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096
+                3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118
+                .571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124
+                -.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361
+                -.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45
+                4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012
+                .893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815
+                0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588
+                5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0
+                11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Pedir por WhatsApp
+          </a>
+
+          <!-- Compartir en redes sociales -->
+          <div class="share-section">
+            <p class="share-title">Compartir con amigos:</p>
+            <div id="modal-shares"></div>
+          </div>
+
+        </div><!-- /modal-info -->
+      </div><!-- /modal-body -->
+    </div><!-- /modal-content -->
+  </div><!-- /modal -->
+
+  <!-- ============================================================
+       BACK TO TOP
+       ============================================================ -->
+  <button class="back-top" id="back-top" aria-label="Volver arriba" title="Volver arriba">↑</button>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer role="contentinfo">
+    <p>© 2025 <span id="footer-brand">SportStyle</span> — Catálogo de productos deportivos.</p>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPT — cargado al final para no bloquear el render
+       ============================================================ -->
+  <script src="js/script.js"></script>
+
+  <!-- Back-to-top logic (inline mínimo, sin depender del App) -->
+  <script>
+    const btt = document.getElementById('back-top');
+    window.addEventListener('scroll', () =>
+      btt.classList.toggle('show', window.scrollY > 400), { passive: true });
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+
+</body>
+</html>

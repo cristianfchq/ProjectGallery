@@ -1,0 +1,698 @@
+/* ================================================================
+   SPORT STYLE CATALOG — CSS
+   Mobile-first · Dark/Light mode · CSS custom properties
+   ================================================================ */
+
+/* ── 1. VARIABLES (tokens de diseño) ──────────────────────────── */
+:root {
+  /* Paleta principal — violeta suave (relajante) */
+  --clr-a:     #667eea;
+  --clr-b:     #764ba2;
+  --grad:      linear-gradient(135deg, var(--clr-a) 0%, var(--clr-b) 100%);
+  --grad-rev:  linear-gradient(315deg, var(--clr-a) 0%, var(--clr-b) 100%);
+
+  /* Fondos */
+  --bg:        #f0f4ff;
+  --surface:   #ffffff;
+  --surface2:  #f8faff;
+
+  /* Texto */
+  --tx:        #1a1f36;
+  --tx-2:      #5a6385;
+  --tx-3:      #9aa3c2;
+
+  /* Bordes / sombras */
+  --border:    rgba(102,126,234,0.12);
+  --shadow-s:  0 2px 10px rgba(102,126,234,0.10);
+  --shadow-m:  0 8px 28px rgba(102,126,234,0.16);
+  --shadow-l:  0 20px 60px rgba(102,126,234,0.22);
+  --shadow-xl: 0 32px 80px rgba(0,0,0,0.22);
+
+  /* Radios */
+  --r:  16px;
+  --r-s: 8px;
+  --r-pill: 50px;
+
+  /* Transición */
+  --t:  all 0.32s cubic-bezier(0.4,0,0.2,1);
+  --t-s:all 0.18s ease;
+
+  /* WhatsApp */
+  --wa: #25D366;
+
+  /* Navbar */
+  --nav-bg: rgba(255,255,255,0.92);
+  --nav-h:  68px;
+}
+
+[data-theme="dark"] {
+  --bg:        #0d0e1a;
+  --surface:   #161828;
+  --surface2:  #1c1e30;
+  --tx:        #e8ecff;
+  --tx-2:      #8b92b8;
+  --tx-3:      #525878;
+  --border:    rgba(102,126,234,0.15);
+  --shadow-s:  0 2px 10px rgba(0,0,0,0.35);
+  --shadow-m:  0 8px 28px rgba(0,0,0,0.45);
+  --shadow-l:  0 20px 60px rgba(0,0,0,0.55);
+  --shadow-xl: 0 32px 80px rgba(0,0,0,0.65);
+  --nav-bg:    rgba(22,24,40,0.96);
+}
+
+/* ── 2. RESET & BASE ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--tx);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+img { display: block; max-width: 100%; }
+button { font-family: inherit; cursor: pointer; }
+a { text-decoration: none; }
+
+/* ── 3. SCROLLBAR ──────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: var(--clr-a); border-radius: 3px; }
+
+/* ── 4. LOADER ─────────────────────────────────────────────────── */
+#loader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--bg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1.2rem;
+  transition: opacity 0.3s ease;
+}
+.loader-ring {
+  width: 52px; height: 52px;
+  border: 4px solid var(--border);
+  border-top-color: var(--clr-a);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+.loader-txt { color: var(--tx-2); font-size: 0.9rem; letter-spacing: 0.04em; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── 5. NAVBAR ─────────────────────────────────────────────────── */
+.navbar {
+  position: sticky; top: 0; z-index: 200;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-s);
+  transition: background 0.4s ease;
+}
+.nav-inner {
+  max-width: 1400px; margin: 0 auto; height: 100%;
+  padding: 0 1.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+
+/* Brand */
+.brand { display: flex; flex-direction: column; line-height: 1; }
+.brand-name {
+  font-size: 1.35rem; font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.brand-tagline { font-size: 0.68rem; color: var(--tx-3); letter-spacing: 0.06em; margin-top: 2px; }
+
+/* Right controls */
+.nav-right { display: flex; align-items: center; gap: 0.6rem; }
+
+/* Search */
+.search-wrap { position: relative; }
+.search-wrap svg {
+  position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; opacity: 0.45; pointer-events: none;
+}
+#search-input {
+  width: 190px; padding: 0.48rem 1rem 0.48rem 2.2rem;
+  background: var(--surface2); border: 2px solid transparent;
+  border-radius: var(--r-pill); font-size: 0.88rem; color: var(--tx);
+  outline: none; transition: var(--t);
+}
+#search-input::placeholder { color: var(--tx-3); }
+#search-input:focus { border-color: var(--clr-a); width: 240px; box-shadow: 0 0 0 4px rgba(102,126,234,0.12); }
+
+/* Theme toggle */
+.theme-toggle {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.45rem 0.9rem; border-radius: var(--r-pill);
+  background: var(--surface2); border: 2px solid transparent;
+  color: var(--tx-2); font-size: 0.84rem; font-weight: 600;
+  transition: var(--t); white-space: nowrap;
+}
+.theme-toggle:hover {
+  border-color: var(--clr-a); background: var(--grad); color: #fff;
+}
+.theme-icon { font-size: 1rem; }
+
+/* ── 6. HERO ───────────────────────────────────────────────────── */
+.hero {
+  background: var(--grad);
+  padding: 4rem 1.5rem 5.5rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+                    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%);
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 60px;
+  background: var(--bg);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.hero-inner { position: relative; z-index: 1; animation: fadeDown 0.6s ease both; }
+.hero-inner h1 {
+  font-size: clamp(1.7rem, 5vw, 2.8rem); font-weight: 900;
+  color: #fff; letter-spacing: -0.02em; margin-bottom: 0.4rem;
+}
+.hero-inner p { color: rgba(255,255,255,0.82); font-size: 1.05rem; }
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── 7. CATEGORY NAV ───────────────────────────────────────────── */
+.cat-section {
+  max-width: 1400px; margin: -2rem auto 2rem;
+  padding: 0 1.5rem; position: relative; z-index: 10;
+}
+.cat-shell {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.9rem 1.25rem;
+  box-shadow: var(--shadow-m);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+}
+.cat-label {
+  font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--tx-3); margin-right: 0.25rem;
+}
+#category-nav { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.cat-btn {
+  padding: 0.42rem 1.1rem; border-radius: var(--r-pill);
+  background: var(--surface2); border: 2px solid transparent;
+  color: var(--tx-2); font-size: 0.86rem; font-weight: 600;
+  transition: var(--t);
+}
+.cat-btn:hover {
+  border-color: var(--clr-a); color: var(--clr-a);
+  transform: translateY(-1px);
+}
+.cat-btn.active {
+  background: var(--grad); color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(102,126,234,0.38);
+}
+
+/* ── 8. PRODUCTS SECTION ───────────────────────────────────────── */
+.products-section {
+  max-width: 1400px; margin: 0 auto; padding: 0 1.5rem 5rem;
+}
+.section-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem;
+}
+.section-title { font-size: 1.3rem; font-weight: 700; color: var(--tx); }
+.product-count {
+  font-size: 0.82rem; color: var(--tx-3);
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 0.28rem 0.85rem; border-radius: var(--r-pill);
+}
+
+/* Grid */
+#product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.4rem;
+}
+
+/* ── 9. PRODUCT CARD ───────────────────────────────────────────── */
+.product-card {
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-s);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+  transition: var(--t), box-shadow 0.32s ease, border-color 0.32s ease;
+  outline: none;
+}
+/* Staggered entrance via CSS custom prop --i set by JS */
+.product-card.card-visible {
+  animation: cardIn 0.45s cubic-bezier(0.22,1,0.36,1) calc(var(--i,0) * 55ms) both;
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(22px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+.product-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--shadow-l);
+  border-color: rgba(102,126,234,0.3);
+}
+.product-card:focus-visible {
+  outline: 3px solid var(--clr-a); outline-offset: 3px;
+}
+
+/* Image wrapper */
+.card-img-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--surface2);
+}
+
+/* ── Paleta de fondos pastel para imágenes con fondo transparente ── */
+/* Modo claro */
+.card-img-wrap[data-pal="0"] { background: #ede9ff; }
+.card-img-wrap[data-pal="1"] { background: #e6f9f0; }
+.card-img-wrap[data-pal="2"] { background: #fff1ea; }
+.card-img-wrap[data-pal="3"] { background: #e6f2ff; }
+.card-img-wrap[data-pal="4"] { background: #ffeef5; }
+.card-img-wrap[data-pal="5"] { background: #fdfbe6; }
+.card-img-wrap[data-pal="6"] { background: #e4f8f3; }
+.card-img-wrap[data-pal="7"] { background: #f4ecff; }
+
+/* Modo oscuro — misma tonalidad pero profunda */
+[data-theme="dark"] .card-img-wrap[data-pal="0"] { background: #1e1838; }
+[data-theme="dark"] .card-img-wrap[data-pal="1"] { background: #0e2219; }
+[data-theme="dark"] .card-img-wrap[data-pal="2"] { background: #28180e; }
+[data-theme="dark"] .card-img-wrap[data-pal="3"] { background: #0e1e32; }
+[data-theme="dark"] .card-img-wrap[data-pal="4"] { background: #28101e; }
+[data-theme="dark"] .card-img-wrap[data-pal="5"] { background: #26221a; }
+[data-theme="dark"] .card-img-wrap[data-pal="6"] { background: #0e2422; }
+[data-theme="dark"] .card-img-wrap[data-pal="7"] { background: #1e1030; }
+.card-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.22,1,0.36,1);
+}
+.product-card:hover .card-img-wrap img { transform: scale(1.08); }
+
+/* Category badge */
+.card-badge {
+  position: absolute; top: 0.85rem; right: 0.85rem;
+  background: var(--grad);
+  color: #fff; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.25rem 0.65rem; border-radius: var(--r-pill);
+  box-shadow: 0 2px 8px rgba(102,126,234,0.35);
+  backdrop-filter: blur(4px);
+  transition: var(--t-s);
+}
+
+/* Overlay — solo descripción + CTA al hacer hover */
+.card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top,
+    rgba(10,8,20,0.88) 0%,
+    rgba(10,8,20,0.55) 55%,
+    transparent 100%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.product-card:hover .card-overlay {
+  opacity: 1; transform: translateY(0);
+}
+.card-desc-ov {
+  color: rgba(255,255,255,0.82); font-size: 0.78rem; line-height: 1.45;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden; margin-bottom: 0.65rem;
+}
+.card-cta {
+  color: #a78bfa; font-size: 0.8rem; font-weight: 700;
+  letter-spacing: 0.04em; transition: color 0.2s ease;
+}
+.product-card:hover .card-cta { color: #fff; }
+
+/* ── Card footer — nombre + precio siempre visibles desde JSON ── */
+.card-footer {
+  position: relative;
+  padding: 0.82rem 1rem 0.92rem;
+  background: var(--surface);
+  display: flex; flex-direction: column; gap: 0.32rem;
+  transition: background 0.28s ease;
+}
+/* Línea superior degradada */
+.card-footer::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad);
+  opacity: 0.35;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  transform: scaleX(0.6);
+  transform-origin: left;
+}
+.product-card:hover .card-footer { background: var(--surface2); }
+.product-card:hover .card-footer::before {
+  opacity: 1; transform: scaleX(1);
+}
+
+.card-name {
+  font-size: 0.9rem; font-weight: 700;
+  color: var(--tx); line-height: 1.3;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: color 0.25s ease;
+}
+.product-card:hover .card-name { color: var(--clr-a); }
+
+.card-footer-row {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-price {
+  font-size: 1.05rem; font-weight: 900;
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1;
+  transition: transform 0.25s ease;
+  display: inline-block;
+}
+.product-card:hover .card-price { transform: scale(1.06); }
+
+.card-arrow {
+  font-size: 0.85rem; font-weight: 700; color: var(--tx-3);
+  opacity: 0; transform: translateX(-6px);
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+.product-card:hover .card-arrow {
+  opacity: 1; transform: translateX(0); color: var(--clr-a);
+}
+
+/* ── 10. EMPTY & ERROR STATES ──────────────────────────────────── */
+#empty-state {
+  grid-column: 1/-1;
+  flex-direction: column; align-items: center;
+  padding: 4rem 1rem; text-align: center;
+  display: none;
+}
+.empty-icon { font-size: 3.5rem; margin-bottom: 0.75rem; opacity: 0.4; }
+.empty-txt  { color: var(--tx-3); font-size: 1rem; }
+
+.error-state {
+  grid-column: 1/-1;
+  text-align: center; padding: 3rem;
+  color: var(--tx-2);
+}
+.error-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+.error-state small { display: block; margin-top: 0.4rem; color: var(--tx-3); font-size: 0.8rem; }
+
+/* ── 11. MODAL ─────────────────────────────────────────────────── */
+#product-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(5,4,12,0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: none; align-items: center; justify-content: center;
+  padding: 1rem;
+}
+#product-modal.active { display: flex; }
+
+.modal-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--r) + 4px);
+  max-width: 900px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  position: relative;
+  box-shadow: var(--shadow-xl);
+  opacity: 0;
+  transform: scale(0.88) translateY(24px);
+  transition: opacity 0.32s cubic-bezier(0.22,1,0.36,1),
+              transform 0.32s cubic-bezier(0.22,1,0.36,1);
+}
+.modal-content.modal-in  { opacity: 1; transform: scale(1) translateY(0); }
+.modal-content.modal-out { opacity: 0; transform: scale(0.88) translateY(24px); }
+
+/* Close btn */
+.modal-close {
+  position: absolute; top: 1rem; right: 1rem; z-index: 5;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(0,0,0,0.55); border: none;
+  color: #fff; font-size: 1.15rem; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: var(--t-s);
+  backdrop-filter: blur(4px);
+}
+.modal-close:hover {
+  background: #e53935; transform: rotate(90deg) scale(1.1);
+}
+
+/* Modal layout */
+.modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Image pane — imagen completa sin recorte */
+.modal-img-pane {
+  position: relative; background: var(--surface2);
+  overflow: hidden; min-height: 320px;
+  border-radius: calc(var(--r) + 4px) 0 0 calc(var(--r) + 4px);
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-img-pane img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  padding: 1rem;
+  transition: transform 0.5s ease;
+}
+.modal-img-pane:hover img { transform: scale(1.03); }
+
+/* Info pane */
+.modal-info {
+  padding: 2rem 1.8rem;
+  display: flex; flex-direction: column; gap: 0.9rem;
+  overflow-y: auto;
+}
+
+.modal-cat-badge {
+  display: inline-block; width: fit-content;
+  background: rgba(102,126,234,0.12); color: var(--clr-a);
+  font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 0.28rem 0.8rem; border-radius: var(--r-pill);
+}
+.modal-name {
+  font-size: 1.65rem; font-weight: 800;
+  color: var(--tx); line-height: 1.2;
+}
+.modal-price {
+  font-size: 2rem; font-weight: 900;
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1;
+}
+.modal-desc {
+  color: var(--tx-2); font-size: 0.96rem; line-height: 1.72; flex: 1;
+}
+.modal-divider { height: 1px; background: var(--border); flex-shrink: 0; }
+
+/* WhatsApp CTA */
+.wa-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  background: var(--wa); color: #fff; font-size: 1rem; font-weight: 700;
+  padding: 0.9rem 1.4rem; border-radius: var(--r-s);
+  border: none; cursor: pointer;
+  box-shadow: 0 4px 18px rgba(37,211,102,0.35);
+  transition: var(--t); animation: waPulse 2.5s ease infinite;
+}
+.wa-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37,211,102,0.5);
+  filter: brightness(1.08);
+  animation: none;
+}
+.wa-icon { width: 22px; height: 22px; flex-shrink: 0; }
+
+@keyframes waPulse {
+  0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,0.35); }
+  50%      { box-shadow: 0 4px 28px rgba(37,211,102,0.6); }
+}
+
+/* Share section */
+.share-title {
+  font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--tx-3);
+  margin-bottom: 0.55rem;
+}
+#modal-shares { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.share-btn {
+  display: flex; align-items: center; gap: 0.35rem;
+  padding: 0.4rem 0.75rem; border-radius: var(--r-s);
+  background: var(--surface2); border: 1.5px solid var(--border);
+  color: var(--tx-2); font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; transition: var(--t-s);
+}
+.share-btn:hover {
+  background: var(--share-color); color: #fff;
+  border-color: var(--share-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.share-icon { font-size: 0.9rem; }
+
+/* ── 11b. TALLAS (SIZES) ───────────────────────────────────────── */
+.sizes-wrap {
+  display: flex; flex-direction: column; gap: 0.55rem;
+}
+.sizes-label {
+  display: flex; align-items: center; gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.sizes-label-txt {
+  font-size: 0.78rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--tx-3);
+}
+.sizes-hint {
+  font-size: 0.8rem; color: var(--tx-3);
+  font-style: italic; transition: var(--t-s);
+}
+.sizes-hint.chosen {
+  color: var(--clr-a); font-style: normal; font-weight: 700;
+}
+
+.sizes-grid {
+  display: flex; flex-wrap: wrap; gap: 0.45rem;
+}
+
+.size-btn {
+  min-width: 46px;
+  padding: 0.38rem 0.7rem;
+  border-radius: var(--r-s);
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  color: var(--tx-2);
+  font-size: 0.84rem; font-weight: 700;
+  cursor: pointer;
+  transition: var(--t-s);
+  line-height: 1;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.size-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--grad);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 0;
+}
+.size-btn span { position: relative; z-index: 1; }
+
+.size-btn:hover:not(.selected) {
+  border-color: var(--clr-a);
+  color: var(--clr-a);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(102,126,234,0.22);
+}
+.size-btn.selected {
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(102,126,234,0.42);
+  transform: translateY(-1px) scale(1.06);
+}
+.size-btn.selected::after { opacity: 1; }
+
+/* Animación de entrada escalonada de las chips */
+@keyframes sizeIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.size-btn { animation: sizeIn 0.25s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* ── 12. FOOTER ────────────────────────────────────────────────── */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--tx-3); font-size: 0.84rem;
+}
+footer span { color: var(--clr-a); font-weight: 700; }
+
+/* ── 13. BACK-TO-TOP ───────────────────────────────────────────── */
+.back-top {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 500;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--grad); color: #fff; border: none;
+  font-size: 1.1rem; cursor: pointer;
+  box-shadow: var(--shadow-m); transition: var(--t);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+}
+.back-top.show { opacity: 1; pointer-events: auto; }
+.back-top:hover { transform: translateY(-3px) scale(1.08); }
+
+/* ── 14. RESPONSIVE ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero { padding: 2.8rem 1rem 4.5rem; }
+
+  .nav-inner { padding: 0 1rem; gap: 0.4rem; }
+  #search-input { width: 130px; }
+  #search-input:focus { width: 160px; }
+  .theme-text { display: none; }
+
+  .cat-section { padding: 0 1rem; }
+  .products-section { padding: 0 1rem 4rem; }
+
+  /* Modal: single column on tablet */
+  .modal-body { grid-template-columns: 1fr; }
+  .modal-img-pane {
+    aspect-ratio: 4/3;
+    border-radius: calc(var(--r) + 4px) calc(var(--r) + 4px) 0 0;
+  }
+  .modal-info { padding: 1.5rem; }
+  .modal-name  { font-size: 1.3rem; }
+  .modal-price { font-size: 1.6rem; }
+}
+
+@media (max-width: 480px) {
+  #product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .hero-inner h1 { font-size: 1.5rem; }
+  .modal-info { padding: 1.1rem; gap: 0.7rem; }
+  .modal-name  { font-size: 1.15rem; }
+  .modal-price { font-size: 1.35rem; }
+}
+
+/* ── 15. TOUCH DEVICES: always show overlay ────────────────────── */
+@media (hover: none) {
+  /* En touch: el footer siempre muestra nombre/precio; ocultamos overlay */
+  .card-overlay { display: none; }
+}
+
+/* ── 16. REDUCED MOTION ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

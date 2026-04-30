@@ -1,0 +1,20 @@
+[
+  {
+    "id": "acc-001",
+    "name": "Gorra Nike Classic",
+    "price": "Bs 300",
+    "image": "assets/accesorios/gorra_nike.png",
+    "category": "Accesorios",
+    "description": "Gorra ajustable con bordado swoosh en frente. Tela transpirable ideal para sol y deporte.",
+    "sizes": ["S/M", "L/XL", "Único"]
+  },
+  {
+    "id": "acc-002",
+    "name": "Mochila Adidas Sport",
+    "price": "Bs 680",
+    "image": "assets/accesorios/mochila_adidas.png",
+    "category": "Accesorios",
+    "description": "Mochila deportiva con compartimento principal amplio, bolsillo lateral para botella y espalda acolchada.",
+    "sizes": ["Único"]
+  }
+]
