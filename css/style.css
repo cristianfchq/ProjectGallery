@@ -509,6 +509,7 @@ a { text-decoration: none; }
 }
 .modal-desc {
   color: var(--tx-2); font-size: 0.96rem; line-height: 1.72; flex: 1;
+  white-space: pre-line;
 }
 .modal-divider { height: 1px; background: var(--border); flex-shrink: 0; }
 
@@ -710,6 +711,7 @@ footer span { color: var(--clr-a); font-weight: 700; }
     font-size: 0.86rem;
     word-break: break-word; /* descripciones sin espacios se ajustan */
     overflow-wrap: break-word;
+    white-space: pre-line;
   }
 
   /* Share: solo iconos, sin etiqueta de texto */
