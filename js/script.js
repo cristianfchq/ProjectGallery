@@ -163,7 +163,7 @@ class Modal {
     document.getElementById('modal-image').alt         = product.name;
     document.getElementById('modal-name').textContent  = product.name;
     document.getElementById('modal-price').textContent = product.price;
-    document.getElementById('modal-desc').textContent  = product.description;
+    document.getElementById('modal-desc').textContent  = product.description; // doble salto para mejor legibilidad
     document.getElementById('modal-cat').textContent   = product.category;
 
     // Tallas disponibles

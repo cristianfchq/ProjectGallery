@@ -1,0 +1,65 @@
+[
+  {
+    "id": "jord1-001",
+    "name": "Air Jordan 1 High OG",
+    "price": "Bs 300",
+    "image": "assets/jordan_1/air_jordan_1_high_og.png",
+    "category": "Jordan 1",
+    "description": "Un clásico que nunca falla 🔴⚫ Dale un upgrade a tu outfit con este ícono del streetwear, cómodo, versátil y con todo el estilo que necesitas para destacar a donde vayas.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord1-002",
+    "name": "Air Jordan 1 Mid",
+    "price": "Bs 680",
+    "image": "assets/jordan_1/air_jordan_1_mid.png",
+    "category": "Jordan 1",
+    "description": "Eleva tu outfit con un clásico reinventado 👟 Diseño urbano, cómodo y listo para cualquier ocasión.\n\n⚡ Tu estilo, tu flow.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord1-003",
+    "name": "Air Jordan 1 Low",
+    "price": "Bs 580",
+    "image": "assets/jordan_1/air_jordan_1_low.png",
+    "category": "Jordan 1",
+    "description": "Minimalista pero con mucho flow 😎 Este clásico en versión low es perfecto para armar outfits frescos sin esfuerzo. Cómodo, versátil y listo para cualquier plan.\n\n💥 Ponle actitud a tu estilo, todos los días.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord1-004",
+    "name": "Air Jordan 1 Zoom CMFT",
+    "price": "Bs 780",
+    "image": "assets/jordan_1/air_jordan_1_zoom_cmft.png",
+    "category": "Jordan 1",
+    "description": "Comodidad al máximo nivel sin perder el flow 🔥 Este Jordan combina el estilo clásico con tecnología moderna para que te veas bien y te sientas aún mejor en cada paso.\n\nDiseñado para destacar en la calle, pero también para aguantar todo tu día 👟\n\n💥 Más cómodo. Más ligero. Más nivel.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord1-005",
+    "name": "Air Jordan 1 Utility",
+    "price": "Bs 780",
+    "image": "assets/jordan_1/air_jordan_1_utility.png",
+    "category": "Jordan 1",
+    "description": "No es un Jordan cualquiera… es otro nivel 🚀 Diseñado para quienes quieren destacar sin seguir lo mismo de siempre. Con detalles únicos y un look más técnico, este par lleva tu estilo directo al futuro.\n\nComodidad, resistencia y puro flow urbano en cada paso 👟\n\n💥 Diferente, atrevido y hecho para romper esquemas.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord1-006",
+    "name": "Air Jordan 1 Mule",
+    "price": "Bs 880",
+    "image": "assets/jordan_1/air_jordan_1_mule.png",
+    "category": "Jordan 1",
+    "description": "Relájate sin perder el flow 😎 El Jordan 1 Mule llega con un diseño diferente que mezcla lo clásico con la comodidad total. Sin talón, fácil de poner y perfecto para esos días donde quieres verte bien sin complicarte.\n\nSu estilo limpio y moderno lo hace ideal para outfits relajados pero con mucha presencia 👟\n\n✨ Lo que lo hace brutal:\n\n👉Diseño sin talón (slip-on) para mayor comodidad\n👉Ligero y fácil de usar en cualquier momento\n👉Estilo minimalista que combina con todo\n👉Inspirado en el clásico Jordan 1 🔥\n\n💥 Comodidad + estilo = combo perfecto.\n\n👉 Póntelos rápido, sal con estilo y marca la diferencia.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord1-007",
+    "name": "Air Jordan 1 Elevate",
+    "price": "Bs 880",
+    "image": "assets/jordan_1/air_jordan_1_elevate.png",
+    "category": "Jordan 1",
+    "description": "Sube de nivel, literal y en estilo 🔥 El Jordan 1 Elevate llega con una plataforma más alta que le da ese extra que tu outfit necesita para destacar sin esfuerzo.\n\nEs el clásico de siempre, pero con un toque moderno y más atrevido 💥 Perfecto para quienes quieren verse diferentes, con más presencia y actitud.\n\n✨ ¿Por qué te va a encantar?\n\n👉Suela elevada que te da más altura y estilo 👟\n👉Diseño icónico Jordan 1 reinventado\n👉Comodidad para usar todo el día\n👉Look moderno que resalta en cualquier outfit\n\n💣 Más altura, más estilo, más impacto.\n\n👉 Hazlo tuyo y lleva tu flow a otro nivel.",
+    "sizes": ["28", "29", "30"]
+  }
+]
