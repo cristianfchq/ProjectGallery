@@ -155,7 +155,7 @@ class Modal {
     this.#bindOrderButton();
   }
 
-  // Boton "Pedri por WhatsApp" dentro del modal
+  // Boton "Pedir por WhatsApp" dentro del modal
   // Intercepta el click: si el despositivo soporta Web Share API con archivos,
   // comparte la IMAGEN + texto formateado. Si no, deja que el href (wa.me) maneje el mensaje de texto.
   #bindOrderButton() {
