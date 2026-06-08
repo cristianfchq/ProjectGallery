@@ -726,7 +726,7 @@ footer span { color: var(--clr-a); font-weight: 700; }
   .size-btn { min-width: 38px; padding: 0.35rem 0.6rem; font-size: 0.8rem; }
 }
 
-/* 15. ULTRA SMALL - 200-445px (smartwatch / foldable cerrado)
+/* 15. ULTRA SMALL - 200-360px (smartwatch / foldable cerrado)
   Estrategia agresiva:
     - Ocultar elemnetos no esenciales (search, tagline, label categoria)
     - Grid de productos a 1 columna (Cards full-width legibles) 
@@ -734,7 +734,7 @@ footer span { color: var(--clr-a); font-weight: 700; }
     - Share solo iconos sin etiqueta
     - body{overflow-x: hidden;} (declarado en : root) impide scroll horizontal
     */
-@media (max-width: 445px) {
+@media (max-width: 360px) {
 
   /* Navbar minimo */
   .nav-inner { padding: 0 0.05rem; gap: 0.25rem; }
