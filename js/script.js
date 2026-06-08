@@ -307,13 +307,15 @@ class Modal {
     }, { once: false });
   }
 
-  // Regenera el href del botón WhatsApp incluyendo la talla si está elegida
+  // Regenera el href de fallback (wa.me) con el mensaje formateado + URL imagen.
+  // Solo se usa si Web Share API NO está disponible (típicamente desktop).
   #refreshWaLink(product) {
-    const sizeStr = this.#selectedSize ? ` | Talla: ${this.#selectedSize}` : '';
-    const msg = encodeURIComponent(
-      `Hola! Me interesa: *${product.name}* — ${product.price}${sizeStr}`
-    );
-    document.getElementById('modal-wa-btn').href = `https://wa.me/${this.#wa}?text=${msg}`;
+    const baseMsg = this.#buildOrderMessage(product);
+    // URL absoluta — WhatsApp puede generar preview del enlace
+    const imgURL  = new URL(product.image, window.location.href).href;
+    const fullMsg = `${baseMsg}\n\n🖼️ Imagen del producto:\n${imgURL}`;
+    document.getElementById('modal-wa-btn').href =
+      `https://wa.me/${this.#wa}?text=${encodeURIComponent(fullMsg)}`;
   }
 
   close() {
