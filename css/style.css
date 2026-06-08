@@ -823,13 +823,32 @@ footer span { color: var(--clr-a); font-weight: 700; }
   footer { padding: 1.2rem 0.6rem; font-size: 0.72rem; }
 }
 
-/* ── 16. TOUCH DEVICES: ocultar overlay (footer ya muestra todo) ────────────────────── */
+/* ── 16. MODAL FIT - 360 a 445px (horizontal) ────────────────────────────────────────── 
+  En este rango la .modal-img-pane se ajusta perfectamente a las esquinas superiores 
+  del .modal-content (mismo border radius), eliminando la franja visible del fondo 
+  del modal en las esquinas 
+  ────────────────────────────────────────────────────────────────────────────────────*/
+@media (min-width: 360px) and (max-width: 445px) {
+  .modal-img-pane {
+    /* Mismo radio que .modal-content (calc(--r) + 4px) = 20px */
+    border-radius: calc(var(--r) + 4px) calc(var(--r) + 4px) 0 0;
+    /* Elimina cualquier margen interno que pueda causar desajuste */
+    /* width: 100%;  */
+    /* elimina cualquier margen que pueda causar desajuste */
+    /* margin: 0;  */
+    /* Asegura que llene exactamnete el ancho del modal content */
+    aspect-ratio: unset; /* permite que la imagen se ajuste al contenido sin forzar un ratio fijo */
+    max-height: unset; /* elimina limitación de altura para aprovechar el espacio disponible */
+  }
+}
+
+/* ── 17. TOUCH DEVICES: ocultar overlay (footer ya muestra todo) ────────────────────── */
 @media (hover: none) {
   /* En touch: el footer siempre muestra nombre/precio; ocultamos overlay */
   .card-overlay { display: none; }
 }
 
-/* ── 17. REDUCED MOTION ────────────────────────────────────────── */
+/* ── 18. REDUCED MOTION ────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
