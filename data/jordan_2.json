@@ -1,0 +1,83 @@
+[
+  {
+    "id": "jord2-001",
+    "name": "Air Jordan 2 High OG",
+    "price": "Bs 300",
+    "image": "assets/jordan_2/air_jordan_2_high_og.png",
+    "category": "Jordan 2",
+    "description": "🔥 Elegancia + street en un solo par\n\nDiseño OG con cuero premium, detalles en contraste y acabado limpio que resalta en cualquier outfit 😎\n\nMáxima comodidad y estilo para el día a día.\n\n💥 Un clásico exclusivo que eleva tu flow al siguiente nivel.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord2-002",
+    "name": "Air Jordan 2 Low OG",
+    "price": "Bs 680",
+    "image": "assets/jordan_2/air_jordan_2_low_og.png",
+    "category": "Jordan 2",
+    "description": "Si lo tuyo es el estilo limpio pero con actitud, los Air Jordan 2 Low OG White/Black son ese par que lo tiene TODO 😎✨\n\nCon un diseño minimalista en blanco y negro, este modelo combina lujo, comodidad y flow urbano, perfecto para destacar sin esfuerzo. El acabado en cuero premium le da ese toque sofisticado, mientras que su silueta baja lo hace súper cómodo y fácil de combinar.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord2-003",
+    "name": "Air Jordan 2 Retro Melo",
+    "price": "Bs 580",
+    "image": "assets/jordan_2/air_jordan_2_retro_melo.png",
+    "category": "Jordan 2",
+    "description": "Si quieres destacar de verdad, los Air Jordan 2 Retro Melo no son opcionales… son necesarios 😎💥\n\nInspirados en el estilo único de Carmelo Anthony, este par combina elegancia, historia y actitud en un diseño que llama la atención desde cualquier ángulo. Su mezcla de colores le da un look fresco y distinto, perfecto para quienes no se conforman con lo básico.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord2-004",
+    "name": "Air Jordan 2 Retro Alternate 87",
+    "price": "Bs 780",
+    "image": "assets/jordan_2/air_jordan_2_retro_alternate_87.png",
+    "category": "Jordan 2",
+    "description": "Si tu estilo es fuerte, seguro y sin miedo a destacar, los Air Jordan 2 Retro Alternate 87 están hechos para ti 🖤💥\n\nCon su diseño en negro dominante y detalles rojos intensos, este par transmite poder, actitud y presencia desde el primer paso. Es ese tipo de tenis que no necesita llamar la atención… porque simplemente la roba 😎",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord2-005",
+    "name": "Air Jordan 2 Retro Dark Concor",
+    "price": "Bs 780",
+    "image": "assets/jordan_2/air_jordan_2_retro_dark_concor.png",
+    "category": "Jordan 2",
+    "description": "Si buscas un par que combine estilo oscuro + detalles que destaquen, los Dark Concord son justo lo que necesitas 😎✨\n\nEl contraste entre el negro profundo y los toques en púrpura le da un look premium y diferente, perfecto para quienes quieren salir de lo común sin perder elegancia.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord2-006",
+    "name": "Air Jordan 2 Python",
+    "price": "Bs 880",
+    "image": "assets/jordan_2/air_jordan_2_python.png",
+    "category": "Jordan 2",
+    "description": "Si quieres algo diferente, exclusivo y con pura presencia, los Air Jordan 2 Python son otro nivel 😎✨\n\nEste modelo rompe lo clásico con su textura tipo reptil, dándole un look elegante, sofisticado y totalmente fuera de lo común. No es solo un tenis… es una pieza que eleva tu outfit automáticamente.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord2-007",
+    "name": "Air Jordan 2 Off-White White Red",
+    "price": "Bs 880",
+    "image": "assets/jordan_2/air_jordan_2_off-white_white_red.png",
+    "category": "Jordan 2",
+    "description": "Si buscas un par que realmente marque la diferencia, los Air Jordan 2 Off-White White Red son otro nivel 😎✨\n\nEste modelo no solo es un Jordan… es una colaboración icónica con Off-White, lo que lo convierte en una pieza exclusiva que mezcla streetwear, diseño premium y cultura sneaker en un solo par.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord2-008",
+    "name": "Air Jordan 2 J Balvin",
+    "price": "Bs 880",
+    "image": "assets/jordan_2/air_jordan_2_j_balvin.png",
+    "category": "Jordan 2",
+    "description": "Si te gusta destacar y llevar buena energía en cada paso, los Air Jordan 2 J Balvin son el par que necesitas 😎✨\n\nCon su diseño lleno de color, detalles únicos y ese toque artístico inconfundible, estos Jordan no pasan desapercibidos. Son la mezcla perfecta de streetwear + música + cultura latina, creados para quienes quieren algo diferente y auténtico.",
+    "sizes": ["28", "29", "30"]
+  },
+  {
+    "id": "jord2-009",
+    "name": "Air Jordan 2 Maison Château Rouge",
+    "price": "Bs 880",
+    "image": "assets/jordan_2/air_jordan_2_maison_chateau_rouge.png",
+    "category": "Jordan 2",
+    "description": "Si quieres un par que combine el estilo clásico con un toque de color vibrante, los Air Jordan 2 Retro White/University Red son la elección perfecta 😎✨\n\nCon su diseño en blanco puro y detalles en rojo universitario, este modelo ofrece un look fresco, limpio y lleno de actitud. Es ese tipo de tenis que eleva cualquier outfit sin esfuerzo, perfecto para quienes buscan destacar con un estilo atemporal pero con personalidad.",
+    "sizes": ["28", "29", "30"]
+  }
+]
