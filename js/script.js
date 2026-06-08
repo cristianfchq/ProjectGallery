@@ -152,55 +152,55 @@ class Modal {
     this.#overlay = document.getElementById('product-modal');
     this.#content = this.#overlay.querySelector('.modal-content');
     this.#bindGlobal();
-    this.#bindOrderButton();
+    // this.#bindOrderButton();
   }
 
   // Boton "Pedir por WhatsApp" dentro del modal
   // Intercepta el click: si el despositivo soporta Web Share API con archivos,
   // comparte la IMAGEN + texto formateado. Si no, deja que el href (wa.me) maneje el mensaje de texto.
-  #bindOrderButton() {
-    const btn = document.getElementById('modal-wa-btn');
-    btn.addEventListener('click', async e => {
-      const product = this.#currentProduct;
-      if (!product) return;
+  // #bindOrderButton() {
+  //   const btn = document.getElementById('modal-wa-btn');
+  //   btn.addEventListener('click', async e => {
+  //     const product = this.#currentProduct;
+  //     if (!product) return;
 
-      // Siempre prevenimos el default - decidimos manualmente la ruta
-      e.preventDefault();
+  //     // Siempre prevenimos el default - decidimos manualmente la ruta
+  //     e.preventDefault();
 
-      const sharedNatively = await this.#tryNativeShare(product);
-      if (!sharedNatively) return;
+  //     const sharedNatively = await this.#tryNativeShare(product);
+  //     if (!sharedNatively) return;
 
-      // Fallback: abrir wa.me en una nueva pestaña (el href ya está actualizado con la talla si se eligió)
-      window.open(btn.href, '_blank', 'noopener');
-    });
-  }
+  //     // Fallback: abrir wa.me en una nueva pestaña (el href ya está actualizado con la talla si se eligió)
+  //     window.open(btn.href, '_blank', 'noopener');
+  //   });
+  // }
 
-  // Intenta compartir via web Share API adjuntando la imagen como archivo, si el navegador lo soporta.
-  async #tryNativeShare(product) {
-    if (!navigator.canShare || !navigator.share) return false;
+  // // Intenta compartir via web Share API adjuntando la imagen como archivo, si el navegador lo soporta.
+  // async #tryNativeShare(product) {
+  //   if (!navigator.canShare || !navigator.share) return false;
 
-    try {
-      const res = await fetch(product.image);
-      if (!res.ok) return false;
-      const blob = await res.blob();
-      const filename = product.image.split('/').pop() || 'producto.png';
-      const file = new File([blob], filename, { type: blob.type || 'image/png' });
+  //   try {
+  //     const res = await fetch(product.image);
+  //     if (!res.ok) return false;
+  //     const blob = await res.blob();
+  //     const filename = product.image.split('/').pop() || 'producto.png';
+  //     const file = new File([blob], filename, { type: blob.type || 'image/png' });
 
-      if (!navigator.canShare({ files: [file] })) return false;
+  //     if (!navigator.canShare({ files: [file] })) return false;
 
-      await navigator.share({
-        files: [file],
-        title: product.name,
-        text: this.#buildOrderMessage(product),
-      });
-      return true;
-    } catch (error) {
-      // AbortError = el usuario cancelo desde el menu nativo (no hacer fallback en este caso porque ya se mostró el diálogo)
-      if (error.name === 'AbortError') return true;
-      console.warn('[Modal] Web Share API fallo, usando el wa.me:', error);
-      return false;
-    }
-  }
+  //     await navigator.share({
+  //       files: [file],
+  //       title: product.name,
+  //       text: this.#buildOrderMessage(product),
+  //     });
+  //     return true;
+  //   } catch (error) {
+  //     // AbortError = el usuario cancelo desde el menu nativo (no hacer fallback en este caso porque ya se mostró el diálogo)
+  //     if (error.name === 'AbortError') return true;
+  //     console.warn('[Modal] Web Share API fallo, usando el wa.me:', error);
+  //     return false;
+  //   }
+  // }
 
   // Construye el mensaje formateadocon markdown de WhatsApp (Sin URL imagen)
   #buildOrderMessage(product) {
