@@ -145,6 +145,7 @@ class Modal {
   #content;
   #selectedSize = null;    // talla actualmente elegida
   #currentProduct = null;  // referencia para refreshWaLink tras selección
+  #sourceEl = null;        // <img> de la card desde donde se abrio (para FLIP de cierre) 
 
   constructor(shareManager, whatsappNumber) {
     this.#share   = shareManager;
@@ -182,9 +183,10 @@ class Modal {
     return lines.join('\n');
   }
 
-  open(product) {
+  open(product, sourceEl = null) {
     this.#selectedSize  = null;
     this.#currentProduct = product;
+    this.#sourceEl = sourceEl;        // guardamos para usar en close() reverse FLIP
 
     // Populate fields
     document.getElementById('modal-image').src         = product.image;
@@ -207,11 +209,75 @@ class Modal {
       btn.addEventListener('click', () => this.#share.open(btn.dataset.platform, product))
     );
 
-    // Animate in
+    // Mostrar overlay y animar contenido
     this.#overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-    requestAnimationFrame(() => this.#content.classList.add('modal-in'));
+
+    if (sourceEl) {
+      // Shared element transition (FLIP): la imagen "vuela" de la card al modal
+      this.#sharedElementOpen(sourceEl);
+    } else {
+      // Fallback: animacion normal blur-to-focus
+      requestAnimationFrame(() => this.#content.classList.add('modal-in'));
+    }
+
     this.#overlay.querySelector('.modal-close')?.focus();
+  }
+
+  /* ─── FLIP: shared element transition ─── 
+    1. Mide el rect de la imagen ORIGEN (card) y DESTINO (modal)
+    2. Coloca la imagen del modal en la posicion/escala del origen
+    3. Anima a su posicion natural (transform: none)
+    Resultado: la imagen "vuela" desde la card al modal. */
+  #sharedElementOpen(sourceEl) {
+    const modalImg = document.getElementById('modal-image');
+
+    // El modal-content debe aparecer instantaneo (la animacion recae en la imagen)
+    this.#content.style.transition = 'opacity 0.22s ease';
+    this.#content.classList.add('modal-in');
+
+    // Cancelar el blur-to-focus default sobre la imagen
+    modalImg.style.transition = 'none';
+    modalImg.style.filter = 'none';
+    modalImg.style.opacity = '1';
+
+    // Esperar a que el modal este en DOM para medir el rect destino
+    requestAnimationFrame(() => {
+      const srcRect = sourceEl.getBoundingClientRect();
+      const dstRect = modalImg.getBoundingClientRect();
+
+      // Fallback: si algun rect no es medible, mostrar sin FLIP
+      if (!srcRect.width || !dstRect.width) {
+        this.#cleanupFLIP(modalImg);
+        return;
+      }
+
+      // Calculo FLIP: delta de centros + escala uniforme
+      const dx = (srcRect.left + srcRect.width / 2) - (dstRect.left + dstRect.width / 2);
+      const dy = (srcRect.top + srcRect.height / 2) - (dstRect.top + dstRect.height / 2);
+      const scale = Math.min(srcRect.width / dstRect.width, srcRect.height / dstRect.height);
+
+      // Esatdo INICIAL: imagen modal en la posicion exacta de la card
+      modalImg.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+      
+      // Forzar reflow para que el navegador registre el estado inicial antes de animar
+      void modalImg.offsetWidth;
+
+      // PLAY: animar a su posicion natural
+      modalImg.style.transition = 'transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
+      modalImg.style.transform = 'translate(0, 0) scale(1)';
+
+      // Cleanup: al terminar la animacion, limpiar estilos inline
+      setTimeout(() => this.#cleanupFLIP(modalImg), 620);
+    });
+  }
+
+  #cleanupFLIP(modalImg) {
+    modalImg.style.transition = '';
+    modalImg.style.transform = '';
+    modalImg.style.filter = '';
+    modalImg.style.opacity = '';
+    this.#content.style.transition = '';
   }
 
   // Construye los botones de talla y los inyecta en el DOM
@@ -277,13 +343,101 @@ class Modal {
   }
 
   close() {
+    // Si abrimos desde una card (Shared element), hacer reverse FLIP de regreso
+    if (this.#sourceEl) {
+      this.#sharedElementClose();
+    } else {
+      this.#defaultClose();
+    }
+  }
+
+  // Cierre por defecto (Sin shared element): animación normal blur-to-focus
+  #defaultClose() {
     this.#content.classList.remove('modal-in');
     this.#content.classList.add('modal-out');
     setTimeout(() => {
       this.#overlay.classList.remove('active');
       this.#content.classList.remove('modal-out');
       document.body.style.overflow = '';
+      this.#sourceEl = null;
     }, 320);
+  }
+
+  /* ─── Reverse FLIP: La imagen vuela del modal de regreso a la card ───
+    Estartegia con CLON: 
+    1. Crear un <img> clon en position: fixed sobre la imagen del modal
+    2. Ocultar el modal (fade)
+    3. Animar el clon (top/left/width/height) a la posicion de la card origen
+    4. Al terminar, eliminar el clon y resetear estado. */
+  #sharedElementClose() {
+    const modalImg = document.getElementById('modal-image');
+    const srcEl = this.#sourceEl;
+
+    const srcRect = srcEl.getBoundingClientRect();
+    const dstRect = modalImg.getBoundingClientRect();
+
+    // Si la card ya no esta visible (Scroll, filtro cambiado, etc) --> cierre normal sin animación
+    if (!srcRect.width || !dstRect.width) {
+      this.#defaultClose();
+      return;
+    }
+
+    // 1. Crear el clon en la posicion actual de la imagen del modal
+    const clone = document.createElement('img');
+    clone.src = modalImg.src;
+    clone.alt = '';
+    clone.style.cssText = `
+      position: fixed;
+      top: ${dstRect.top}px;
+      left: ${dstRect.left}px;
+      width: ${dstRect.width}px;
+      height: ${dstRect.height}px;
+      object-fit: contain;
+      margin: 0; padding: 0;
+      z-index: 1100;
+      pointer-events: none;
+      will-change: top, left, width, height;
+      transition: 
+        top 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+        left 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+        width 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+        height 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+    `;
+    document.body.appendChild(clone);
+
+    // 2. Ocultar la imagen original del modal (el clon la reeemplaza visualmente)
+    modalImg.style.opacity = '0';
+
+    // 3. Fade-out del modal-content y del backdrop
+    this.#content.style.transition = 'opacity 0.32s ease';
+    this.#content.style.opacity = '0';
+    this.#overlay.style.transition = 'background 0.42s ease, backdrop-filter 0.42s ease';
+    this.#overlay.style.background = 'transparent';
+    this.#overlay.style.backdropFilter = 'blur(0)';
+
+    //4. En el siguiente frame: animar clon hacia la posicion del card
+    requestAnimationFrame(() => {
+      clone.style.top = `${srcRect.top}px`;
+      clone.style.left = `${srcRect.left}px`;
+      clone.style.width = `${srcRect.width}px`;
+      clone.style.height = `${srcRect.height}px`;
+    });
+
+    // 5. Al terminar la animación, limpiar todo
+    setTimeout(() => {
+      clone.remove();
+      this.#overlay.classList.remove('active');
+      this.#content.classList.remove('modal-in');
+      // Reset de estilos inline
+      this.#content.style.opacity = '';
+      this.#content.style.transition = '';
+      this.#overlay.style.background = '';
+      this.#overlay.style.backdropFilter = '';
+      this.#overlay.style.transition = '';
+      modalImg.style.opacity = '';
+      document.body.style.overflow = '';
+      this.#sourceEl = null;
+    }, 540);
   }
 
   #bindGlobal() {
@@ -328,7 +482,11 @@ class ProductRenderer {
 
     // Bind card interactions
     grid.querySelectorAll('.product-card').forEach((card, i) => {
-      const open = () => this.#modal.open(products[i]);
+      // Pasamos el <img> de la card al modal para hacer "shared element transition" con FLIP
+      const open = () => {
+        const sourceImg = card.querySelector('.card-img-wrap img');
+        this.#modal.open(products[i], sourceImg);
+      }
       card.addEventListener('click', open);
       card.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }

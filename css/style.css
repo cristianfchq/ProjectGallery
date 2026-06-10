@@ -178,12 +178,55 @@ a { text-decoration: none; }
   background: var(--bg);
   clip-path: ellipse(55% 100% at 50% 100%);
 }
-.hero-inner { position: relative; z-index: 1; animation: fadeDown 0.6s ease both; }
+.hero-inner { position: relative; z-index: 2; animation: fadeDown 0.6s ease both; }
 .hero-inner h1 {
   font-size: clamp(1.7rem, 5vw, 2.8rem); font-weight: 900;
   color: #fff; letter-spacing: -0.02em; margin-bottom: 0.4rem;
 }
 .hero-inner p { color: rgba(255,255,255,0.82); font-size: 1.05rem; }
+
+/* ─── Hero blods ─ mesh gradient animados de fondo ────────────────────────*/
+.hero-blod {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform;
+  mix-blend-mode: screen;
+}
+.hero-blod-1 {
+  width: 340px; height: 340px; 
+  background: radial-gradient(circle, #ffafd1 0%, transparent 70%);
+  top: -80px; left: -60px;
+  animation: floatBlob1 14s ease-in-out infinite;
+}
+.hero-blod-2 {
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, #a78bfa 0%, transparent 70%);
+  top: 30%; right: -90px;
+  animation: floatBlob2 18s ease-in-out infinite;
+}
+.hero-blod-3 {
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, #60a5fa 0%, transparent 70%);
+  top: -120px; left: 35%;
+  animation: floatBlob3 16s ease-in-out infinite;
+}
+
+@keyframes floatBlob1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(70px, 50px) scale(1.18); }
+}
+@keyframes floatBlob2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-60px, -40px) scale(1.12); }
+}
+@keyframes floatBlob3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(50px, -60px) scale(1.22); }
+}
 
 @keyframes fadeDown {
   from { opacity: 0; transform: translateY(-16px); }
@@ -308,9 +351,24 @@ a { text-decoration: none; }
 .card-img-wrap img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.55s cubic-bezier(0.22,1,0.36,1);
+  /* Ken Burns: zoom + pan suave continuo (Efecto Apple / Nike) */
+  animation: kenBurns 14s ease-in-out infinite alternate;
+  will-change: transform;
+  transition: transform 0.55s cubic-bezier(0.22,1,0.36,1),
+              filter 0.4s ease;
 }
-.product-card:hover .card-img-wrap img { transform: scale(1.08); }
+
+@keyframes kenBurns {
+  from { transform: scale(1) translate(0%, 0%); }
+  to   { transform: scale(1.08) translate(-1.5%, 1%); }
+}
+
+/* En hover: pausamos ken Burns y aplicamos zoom statico + saturacion */
+.product-card:hover .card-img-wrap img { 
+  animation-play-state: paused;
+  transform: scale(1.12);
+  filter: saturate(1.12) brightness(1.04); 
+}
 
 /* Category badge */
 .card-badge {
@@ -476,12 +534,66 @@ a { text-decoration: none; }
   border-radius: calc(var(--r) + 4px) 0 0 calc(var(--r) + 4px);
   display: flex; align-items: center; justify-content: center;
 }
+
+/* Blods animados de fondo en el modal ── replica el efecto hero */
+.modal-img-pane::before,
+.modal-img-pane::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform;
+  mix-blend-mode: screen;
+}
+.modal-img-pane::before {
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, #ffafd1 0%, transparent 70%);
+  top: -60px; left: -50px;
+  opacity: 0.6;
+  animation: modalBlob1 13s ease-in-out infinite;
+}
+.modal-img-pane::after {
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, #a78bfa 0%, transparent 70%);
+  top: -80px; right: -60px;
+  opacity: 0.55;
+  animation: modalBlob2 17s ease-in-out infinite;
+}
+
+@keyframes modalBlob1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(50px, 35px) scale(1.2); }
+}
+@keyframes modalBlob2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-40px, -45px) scale(1.15); }
+}
+
 .modal-img-pane img {
+  position: relative; 
+  z-index: 1;
   width: 100%; height: 100%;
   object-fit: contain;      /* imagen completa, nunca se recorta ni se desborda */
   display: block;
-  transition: transform 0.5s ease;
+  /* Estado INICIAL: borrosa y un poco escalada (entra "fuera de foco") */
+  filter: blur(16px) saturate(1.4);
+  transform: scale(1.06);
+  opacity: 0;
+  transition: 
+    filter    0.65s cubic-bezier(0.22,1,0.36,1),
+    transform 0.65s cubic-bezier(0.22,1,0.36,1),
+    opacity   0.45s ease;
 }
+
+/* Cuando el modal se activa: enfoque progresivo */
+.modal-content.modal-in .modal-img-pane img {
+  filter: blur(0) saturate(1);
+  transform: scale(1);
+  opacity: 1;
+}
+
 .modal-img-pane:hover img { transform: scale(1.03); }
 
 /* Info pane */
