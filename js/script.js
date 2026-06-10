@@ -154,6 +154,34 @@ class Modal {
     this.#bindGlobal();
   }
 
+  // Nota: el botón "Pedir por WhatsApp" usa el <a href="wa.me/<numero>?text=...">
+  // que genera #refreshWaLink() — abre WhatsApp DIRECTAMENTE con el número del
+  // dueño definido en config.json, sin menú "compartir con..." de ningún tipo.
+
+  // Construye el mensaje formateado con markdown de WhatsApp (sin URL imagen)
+  #buildOrderMessage(product) {
+    const lines = [
+      `🛍️ *NUEVO PEDIDO*`,
+      `━━━━━━━━━━━━━━━━━━`,
+      ``,
+      `📦 *Producto:* ${product.name}`,
+      `🏷️ *Categoría:* ${product.category}`,
+      `💰 *Precio:* ${product.price}`,
+    ];
+    if (this.#selectedSize) {
+      lines.push(`📏 *Talla:* ${this.#selectedSize}`);
+    }
+    lines.push(
+      ``,
+      `📝 _${product.description}_`,
+      ``,
+      `━━━━━━━━━━━━━━━━━━`,
+      `¡Hola! 👋 Me interesa este producto.`,
+      `¿Está disponible? ¿Cómo procedo con el pago?`
+    );
+    return lines.join('\n');
+  }
+
   open(product) {
     this.#selectedSize  = null;
     this.#currentProduct = product;
@@ -235,13 +263,17 @@ class Modal {
     }, { once: false });
   }
 
-  // Regenera el href del botón WhatsApp incluyendo la talla si está elegida
+  // Regenera el href del botón WhatsApp con el mensaje formateado.
+  // El URL absoluto de la imagen se pone solo (sin label) al final →
+  // WhatsApp genera AUTOMÁTICAMENTE un preview con thumbnail visible en el chat.
+  // El receptor "ve" la imagen como tarjeta de preview en la conversación.
   #refreshWaLink(product) {
-    const sizeStr = this.#selectedSize ? ` | Talla: ${this.#selectedSize}` : '';
-    const msg = encodeURIComponent(
-      `Hola! Me interesa: *${product.name}* — ${product.price}${sizeStr}`
-    );
-    document.getElementById('modal-wa-btn').href = `https://wa.me/${this.#wa}?text=${msg}`;
+    const baseMsg = this.#buildOrderMessage(product);
+    const imgURL  = new URL(product.image, window.location.href).href;
+    // URL pelada al final → WhatsApp lo procesa como link-preview con imagen
+    const fullMsg = `${baseMsg}\n\n${imgURL}`;
+    document.getElementById('modal-wa-btn').href =
+      `https://wa.me/${this.#wa}?text=${encodeURIComponent(fullMsg)}`;
   }
 
   close() {
