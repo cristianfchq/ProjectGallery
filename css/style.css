@@ -185,8 +185,8 @@ a { text-decoration: none; }
 }
 .hero-inner p { color: rgba(255,255,255,0.82); font-size: 1.05rem; }
 
-/* ─── Hero blods ─ mesh gradient animados de fondo ────────────────────────*/
-.hero-blod {
+/* ─── Hero blobs ─ mesh gradient animados de fondo ────────────────────────*/
+.hero-blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(70px);
@@ -196,19 +196,19 @@ a { text-decoration: none; }
   will-change: transform;
   mix-blend-mode: screen;
 }
-.hero-blod-1 {
+.hero-blob-1 {
   width: 340px; height: 340px; 
   background: radial-gradient(circle, #ffafd1 0%, transparent 70%);
   top: -80px; left: -60px;
   animation: floatBlob1 14s ease-in-out infinite;
 }
-.hero-blod-2 {
+.hero-blob-2 {
   width: 280px; height: 280px;
   background: radial-gradient(circle, #a78bfa 0%, transparent 70%);
   top: 30%; right: -90px;
   animation: floatBlob2 18s ease-in-out infinite;
 }
-.hero-blod-3 {
+.hero-blob-3 {
   width: 320px; height: 320px;
   background: radial-gradient(circle, #60a5fa 0%, transparent 70%);
   top: -120px; left: 35%;
@@ -543,7 +543,7 @@ a { text-decoration: none; }
   border-radius: 50%;
   filter: blur(55px);
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
   will-change: transform;
   mix-blend-mode: screen;
 }

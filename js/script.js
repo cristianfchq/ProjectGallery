@@ -486,7 +486,7 @@ class ProductRenderer {
       const open = () => {
         const sourceImg = card.querySelector('.card-img-wrap img');
         this.#modal.open(products[i], sourceImg);
-      }
+      };
       card.addEventListener('click', open);
       card.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
