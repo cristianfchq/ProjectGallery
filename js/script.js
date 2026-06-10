@@ -145,6 +145,7 @@ class Modal {
   #content;
   #selectedSize = null;    // talla actualmente elegida
   #currentProduct = null;  // referencia para refreshWaLink tras selección
+  #sourceEl = null;        // <img> de la card desde donde se abrio (para FLIP de cierre) 
 
   constructor(shareManager, whatsappNumber) {
     this.#share   = shareManager;
